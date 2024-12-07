@@ -1,19 +1,21 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import About from "./components/About";
-import Home from "./components/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Vans from "./pages/Vans";
+import "./server";
+import VanDetail from "./pages/VanDetail";
+import Layout from "./components/Layout";
+
 const App = () => {
   return (
     <BrowserRouter>
-      <header className="navbar">
-          <Link to="/"  className="site-logo">#VANLIFE</Link>
-        <nav className="pages">
-          <Link to="/about">About</Link>
-          <Link to="/">Vans</Link>
-        </nav>
-      </header>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route element={<Layout/>}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/vans" element={<Vans />} />
+          <Route path="/vans/:id" element={<VanDetail />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
